@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import { canDerive } from '@reef-defi/extension-base/utils';
+import { canDerive } from '@reef-chain/extension-base/utils';
 import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 
 import { Button } from '../../../../reef/extension-ui/uik/Button';

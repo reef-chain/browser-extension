@@ -6,7 +6,7 @@
   "homepage": "https://github.com/reef-defi/browser-extension/tree/master/packages/extension-compat-metamask#readme",
   "license": "Apache-2",
   "maintainers": [],
-  "name": "@reef-defi/extension-compat-metamask",
+  "name": "@reef-chain/extension-compat-metamask",
   "repository": {
     "directory": "packages/extension-compat-metamask",
     "type": "git",
@@ -19,7 +19,7 @@
   "dependencies": {
     "@babel/runtime": "^7.16.0",
     "@metamask/detect-provider": "^1.2.0",
-    "@reef-defi/extension-inject": "^1.0.23",
+    "@reef-chain/extension-inject": "^1.0.23",
     "@reef-defi/util": "^7.8.2",
     "web3": "^1.6.0"
   },

@@ -1,7 +1,7 @@
 // Copyright 2019-2021 @polkadot/extension-ui authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { RequestAuthorizeTab } from '@reef-defi/extension-base/background/types';
+import type { RequestAuthorizeTab } from '@reef-chain/extension-base/background/types';
 import type { ThemeProps } from '../../types';
 
 import React, { useCallback, useContext } from 'react';
@@ -85,7 +85,7 @@ export default styled(Request)(({ theme }: Props) => `
   .tab-info {
     overflow: hidden;
     margin: 24px 24px 0px 1.45rem;
-    
+
   }
 
   .tab-name,

@@ -1,5 +1,5 @@
-import { Provider } from '@reef-defi/evm-provider';
-import { appState, Components, hooks, ReefSigner, TokenWithAmount, utils as reefUtils } from '@reef-defi/react-lib';
+import { Provider } from '@reef-chain/evm-provider';
+import { appState, Components, hooks, ReefSigner, TokenWithAmount, utils as reefUtils } from '@reef-chain/react-lib';
 import React, { useEffect, useState } from 'react';
 
 import { Loading } from '../uik';

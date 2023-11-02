@@ -6,8 +6,8 @@ import type { ThemeProps } from '../../types';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { AuthUrlInfo } from '@reef-defi/extension-base/background/handlers/State';
-import { Switch } from '@reef-defi/extension-ui/components';
+import { AuthUrlInfo } from '@reef-chain/extension-base/background/handlers/State';
+import { Switch } from '@reef-chain/extension-ui/components';
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
 
@@ -66,7 +66,7 @@ export default styled(WebsiteEntry)(({ theme }: Props) => `
         background-color: ${theme.backButtonBackground};
       }
   }
-  
+
   .remove-access {
     margin-left: 12px;
     cursor: pointer;

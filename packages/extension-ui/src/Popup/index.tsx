@@ -1,14 +1,14 @@
 // Copyright 2019-2021 @polkadot/extension-ui authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { AccountJson, AccountsContext, AuthorizeRequest, MetadataRequest, SigningRequest } from '@reef-defi/extension-base/background/types';
+import type { AccountJson, AccountsContext, AuthorizeRequest, MetadataRequest, SigningRequest } from '@reef-chain/extension-base/background/types';
 import type { SettingsStruct } from '@polkadot/ui-settings/types';
 
 import { ApolloClient, ApolloProvider } from '@apollo/client';
-import { Provider } from '@reef-defi/evm-provider';
-import { PHISHING_PAGE_REDIRECT } from '@reef-defi/extension-base/defaults';
-import { canDerive } from '@reef-defi/extension-base/utils';
-import { appState, availableNetworks, graphql, hooks, ReefSigner } from '@reef-defi/react-lib';
+import { Provider } from '@reef-chain/evm-provider';
+import { PHISHING_PAGE_REDIRECT } from '@reef-chain/extension-base/defaults';
+import { canDerive } from '@reef-chain/extension-base/utils';
+import { appState, availableNetworks, graphql, hooks, ReefSigner } from '@reef-chain/react-lib';
 import React, { useCallback, useEffect, useState } from 'react';
 import { Route, Switch } from 'react-router';
 

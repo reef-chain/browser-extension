@@ -6,7 +6,7 @@
   "homepage": "https://github.com/reef-defi/browser-extension/tree/master/packages/extension-inject#readme",
   "license": "Apache-2",
   "maintainers": [],
-  "name": "@reef-defi/extension-inject",
+  "name": "@reef-chain/extension-inject",
   "repository": {
     "directory": "packages/extension-inject",
     "type": "git",

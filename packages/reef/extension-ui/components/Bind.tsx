@@ -1,11 +1,11 @@
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { ActionContext, SigningReqContext } from '@reef-defi/extension-ui/components';
-import { useTranslation } from '@reef-defi/extension-ui/components/translate';
-import { Header } from '@reef-defi/extension-ui/partials';
-import { appState, Components, hooks, ReefSigner } from '@reef-defi/react-lib';
-import { TxStatusUpdate } from '@reef-defi/react-lib/dist/utils';
+import { ActionContext, SigningReqContext } from '@reef-chain/extension-ui/components';
+import { useTranslation } from '@reef-chain/extension-ui/components/translate';
+import { Header } from '@reef-chain/extension-ui/partials';
+import { appState, Components, hooks, ReefSigner } from '@reef-chain/react-lib';
+import { TxStatusUpdate } from '@reef-chain/react-lib/dist/utils';
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 
 import { SigningOrChildren } from './SigningOrChildren';

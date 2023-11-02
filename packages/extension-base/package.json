@@ -2,11 +2,11 @@
   "author": "Reef Chain",
   "bugs": "https://github.com/reef-defi/browser-extension/issues",
   "contributors": [],
-  "description": "Functions, classes and other utilities used in @reef-defi/extension",
+  "description": "Functions, classes and other utilities used in @reef-chain/extension",
   "homepage": "https://github.com/reef-defi/browser-extension/tree/master/packages/extension-base#readme",
   "license": "Apache-2",
   "maintainers": [],
-  "name": "@reef-defi/extension-base",
+  "name": "@reef-chain/extension-base",
   "repository": {
     "directory": "packages/extension-base",
     "type": "git",
@@ -14,16 +14,16 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "1.0.22",
+  "version": "1.0.23",
   "main": "index.js",
   "dependencies": {
     "@babel/runtime": "^7.16.0",
     "@polkadot/api": "^6.7.1",
     "@polkadot/phishing": "^0.6.407",
     "@polkadot/ui-keyring": "^0.86.5",
+    "@reef-chain/extension-dapp": "^1.0.23",
+    "@reef-chain/extension-inject": "^1.0.23",
     "@reef-chain/util-lib": "^0.10.6",
-    "@reef-defi/extension-dapp": "^1.0.22",
-    "@reef-defi/extension-inject": "^1.0.22",
     "@reef-defi/keyring": "^7.8.2"
   }
 }

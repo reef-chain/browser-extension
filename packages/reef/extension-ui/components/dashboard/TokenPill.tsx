@@ -1,4 +1,4 @@
-import { TokenWithAmount, utils as reefUtils } from '@reef-defi/react-lib';
+import { TokenWithAmount, utils as reefUtils } from '@reef-chain/react-lib';
 import React from 'react';
 
 import { Card, UikText } from './../../uik';

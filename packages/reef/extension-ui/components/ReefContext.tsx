@@ -1,5 +1,5 @@
-import { PoolContext, TokenContext, TokenPricesContext } from '@reef-defi/extension-ui/components';
-import { appState, hooks, ReefSigner } from '@reef-defi/react-lib';
+import { PoolContext, TokenContext, TokenPricesContext } from '@reef-chain/extension-ui/components';
+import { appState, hooks, ReefSigner } from '@reef-chain/react-lib';
 import React, { useMemo } from 'react';
 
 export const ReefContext = (props: {children?: any; apollo: any, signer?: ReefSigner|null}): JSX.Element => {

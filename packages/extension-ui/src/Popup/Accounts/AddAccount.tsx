@@ -3,7 +3,7 @@
 
 import type { ThemeProps } from '../../types';
 
-import { ActionContext } from '@reef-defi/extension-ui/components';
+import { ActionContext } from '@reef-chain/extension-ui/components';
 import React, { useCallback, useContext } from 'react';
 import styled from 'styled-components';
 

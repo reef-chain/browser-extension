@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import './i18n/i18n';
-import '@reef-defi/react-lib/dist/index.css';
+import '@reef-chain/react-lib/dist/index.css';
 
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';

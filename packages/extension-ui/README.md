@@ -1,3 +1,3 @@
-# @reef-defi/extension-ui
+# @reef-chain/extension-ui
 
-UI for the `@reef-defi/extension`
+UI for the `@reef-chain/extension`

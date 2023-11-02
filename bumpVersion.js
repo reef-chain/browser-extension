@@ -29,7 +29,7 @@ function updateVersions (json, pkgNames, ver) {
   console.log('IN PACKAGE=', json.name);
   json.version = ver;
   pkgNames.forEach((name) => {
-    const depName = `@reef-defi/${name}`;
+    const depName = `@reef-chain/${name}`;
     const toVersion = `^${ver}`;
     const dependency = json.dependencies && json.dependencies[depName];
 

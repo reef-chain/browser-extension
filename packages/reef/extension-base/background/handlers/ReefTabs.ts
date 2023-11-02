@@ -1,6 +1,6 @@
-import { createSubscription, unsubscribe } from '@reef-defi/extension-base/background/handlers/subscriptions';
-import Tabs from '@reef-defi/extension-base/background/handlers/Tabs';
-import { MessageTypes, RequestTypes, ResponseTypes } from '@reef-defi/extension-base/background/types';
+import { createSubscription, unsubscribe } from '@reef-chain/extension-base/background/handlers/subscriptions';
+import Tabs from '@reef-chain/extension-base/background/handlers/Tabs';
+import { MessageTypes, RequestTypes, ResponseTypes } from '@reef-chain/extension-base/background/types';
 
 import { networkRpcUrlSubject } from './ReefExtension';
 

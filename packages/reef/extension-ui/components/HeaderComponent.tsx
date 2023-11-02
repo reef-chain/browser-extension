@@ -1,9 +1,9 @@
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { faCog, faCoins, faExternalLinkAlt, faPlusCircle, faWallet } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { ActionContext, SigningReqContext } from '@reef-defi/extension-ui/components';
-import MenuAdd from '@reef-defi/extension-ui/partials/MenuAdd';
-import { appState, availableNetworks, hooks, Network } from '@reef-defi/react-lib';
+import { ActionContext, SigningReqContext } from '@reef-chain/extension-ui/components';
+import MenuAdd from '@reef-chain/extension-ui/partials/MenuAdd';
+import { appState, availableNetworks, hooks, Network } from '@reef-chain/react-lib';
 import React, { useCallback, useContext, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';

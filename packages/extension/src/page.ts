@@ -1,12 +1,12 @@
 // Copyright 2019-2021 @polkadot/extension authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { RequestSignatures, TransportRequestMessage } from '@reef-defi/extension-base/background/types';
-import type { Message } from '@reef-defi/extension-base/types';
+import type { RequestSignatures, TransportRequestMessage } from '@reef-chain/extension-base/background/types';
+import type { Message } from '@reef-chain/extension-base/types';
 
-import { PORT_CONTENT } from '@reef-defi/extension-base/defaults';
-import { enable, handleResponse, redirectIfPhishing } from '@reef-defi/extension-base/page';
-import { injectExtension, REEF_EXTENSION_IDENT, REEF_INJECTED_EVENT, startInjection } from '@reef-defi/extension-inject';
+import { PORT_CONTENT } from '@reef-chain/extension-base/defaults';
+import { enable, handleResponse, redirectIfPhishing } from '@reef-chain/extension-base/page';
+import { injectExtension, REEF_EXTENSION_IDENT, REEF_INJECTED_EVENT, startInjection } from '@reef-chain/extension-inject';
 
 startInjection(REEF_EXTENSION_IDENT);
 

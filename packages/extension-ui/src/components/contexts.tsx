@@ -1,11 +1,11 @@
 // Copyright 2019-2021 @polkadot/extension-ui authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { AccountsContext, AuthorizeRequest, MetadataRequest, SigningRequest } from '@reef-defi/extension-base/background/types';
+import type { AccountsContext, AuthorizeRequest, MetadataRequest, SigningRequest } from '@reef-chain/extension-base/background/types';
 import type { SettingsStruct } from '@polkadot/ui-settings/types';
 import type { AvailableThemes } from './themes';
 
-import { LastPoolReserves, Token } from '@reef-defi/react-lib';
+import { LastPoolReserves, Token } from '@reef-chain/react-lib';
 import React from 'react';
 
 import settings from '@polkadot/ui-settings';

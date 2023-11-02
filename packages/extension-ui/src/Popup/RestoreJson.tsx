@@ -1,7 +1,7 @@
 // Copyright 2019-2021 @polkadot/extension-ui authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ResponseJsonGetAccountInfo } from '@reef-defi/extension-base/background/types';
+import type { ResponseJsonGetAccountInfo } from '@reef-chain/extension-base/background/types';
 import type { KeyringPair$Json } from '@reef-defi/keyring/types';
 import type { KeyringPairs$Json } from '@polkadot/ui-keyring/types';
 

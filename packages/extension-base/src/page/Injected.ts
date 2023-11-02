@@ -1,10 +1,10 @@
 // Copyright 2019-2021 @polkadot/extension authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ReefInjected } from '@reef-defi/extension-inject/types';
+import type { ReefInjected } from '@reef-chain/extension-inject/types';
 import type { SendRequest } from './types';
 
-import Accounts from '@reef-defi/extension-base/page/Accounts';
+import Accounts from '@reef-chain/extension-base/page/Accounts';
 
 import { ReefProvider } from '../../../reef/extension-base/src/page/ReefProvider';
 import { ReefSigner } from '../../../reef/extension-base/src/page/ReefSigner';

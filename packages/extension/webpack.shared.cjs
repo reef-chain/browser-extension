@@ -99,7 +99,7 @@ module.exports = (entry, alias = {}, optimization = {}, output = null, mode = 'p
   resolve: {
     alias: packages.reduce((alias, p) => ({
       ...alias,
-      [`@reef-defi/${p}`]: path.resolve(__dirname, `../${p}/src`)
+      [`@reef-chain/${p}`]: path.resolve(__dirname, `../${p}/src`)
     }), {
       ...alias,
       'react/jsx-runtime': require.resolve('react/jsx-runtime')

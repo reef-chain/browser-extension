@@ -1,6 +1,6 @@
 [![reef-defi](https://img.shields.io/badge/reef--defi-js-blueviolet)](https://docs.reef.finance/docs/developers/js_libraries/#reefjs)
 ![license](https://img.shields.io/badge/License-Apache%202.0-blue?logo=apache&style=flat-square)
-[![npm](https://img.shields.io/npm/v/@reef-defi/extension-dapp?logo=npm&style=flat-square)](https://www.npmjs.com/package/@reef-defi/extension-dapp)
+[![npm](https://img.shields.io/npm/v/@reef-chain/extension-dapp?logo=npm&style=flat-square)](https://www.npmjs.com/package/@reef-chain/extension-dapp)
 
 # reef.io wallet extension
 
@@ -16,7 +16,7 @@ As it stands, it does one thing: it _only_ manages accounts and allows the signi
 <a name="manual-installation"></a>
 ## Manually Install on Chrome / Brave Browser
 1. Go to the source file by [clicking here](https://github.com/reef-defi/browser-extension/blob/master/source.zip)
-   
+
 2. Click on the download icon at top right
 
 <img width="720" alt="Screenshot 2023-10-26 at 3 38 05 PM" src="https://github.com/reef-defi/browser-extension/assets/62092256/a13afdc5-7a4a-4330-9e29-400892299ad2">
@@ -24,7 +24,7 @@ As it stands, it does one thing: it _only_ manages accounts and allows the signi
 3. After downloading the file , unzip it.
 
 4. Open Chrome/Brave browser and click on the three dots at top
-   
+
 <img width="720" alt="Screenshot 2023-10-26 at 3 43 25 PM" src="https://github.com/reef-defi/browser-extension/assets/62092256/49c638c8-ff7d-452b-821b-7991e9537584">
 <br>
 
@@ -39,17 +39,17 @@ As it stands, it does one thing: it _only_ manages accounts and allows the signi
 
 
 7. Click on Load Unpacked at top left
-   
+
 <img width="1126" alt="Screenshot 2023-10-26 at 3 54 06 PM" src="https://github.com/reef-defi/browser-extension/assets/62092256/62657dee-3a1a-45e3-b562-1ff8bdc65bb6">
 
 
 8. Select the Folder which you unzipped at Step 3 and click on `Select`
-    
+
 <img width="1123" alt="Screenshot 2023-10-26 at 3 57 04 PM" src="https://github.com/reef-defi/browser-extension/assets/62092256/ddd66547-25ca-434e-8f66-2e5e1e48bd24">
 
 
 9. Now you can see Reef Extension here
-    
+
 <img width="1125" alt="Screenshot 2023-10-26 at 3 57 31 PM" src="https://github.com/reef-defi/browser-extension/assets/62092256/d48f791c-a096-4a97-8854-d59ec22f23ea">
 
 
@@ -59,15 +59,15 @@ As it stands, it does one thing: it _only_ manages accounts and allows the signi
 11. Voila! Now Reef Extension is installed on your browser!
 
 ## Usage
-To install the component, do `yarn add @reef-defi/extension-dapp`.
+To install the component, do `yarn add @reef-chain/extension-dapp`.
 
 ```js
 import {
   web3Accounts,
   web3Enable,
   web3FromAddress,
-} from '@reef-defi/extension-dapp';
-const { Provider } = require("@reef-defi/evm-provider");
+} from '@reef-chain/extension-dapp';
+const { Provider } = require("@reef-chain/evm-provider");
 const { WsProvider } = require("@polkadot/api");
 
 // returns an array of all the injected sources
@@ -111,21 +111,21 @@ To find out more about how to use the extension as a Dapp developer, cookbook, a
 It is possible to support both `reef.io wallet` as well as `polkadot.js` extension in your app. As long as you request the source extension of the injected account, the correct extension will be used to sign the transaction.
 
 ### Change to `@reef-defi` dependencies
-If you use `@polkadot/extension-dapp` dependencies, change them to `@reef-defi/extension-dapp` dependencies:
+If you use `@polkadot/extension-dapp` dependencies, change them to `@reef-chain/extension-dapp` dependencies:
 
-1. change `@polkadot/extension-dapp` to `"@reef-defi/extension-dapp":"^"` in your `package.json`.
+1. change `@polkadot/extension-dapp` to `"@reef-chain/extension-dapp":"^"` in your `package.json`.
 2. call 'yarn
-3. change the imports to `@reef-defi/extension*` wherever you use the imports from `@polkadot/extension*`.
+3. change the imports to `@reef-chain/extension*` wherever you use the imports from `@polkadot/extension*`.
 
 ### Use `web3FromSource` to find the source extension for signing.
 
-1. check where the extension signer is used. This is most likely where `Signer` is imported from `@reef-defi/evm-provider`.
+1. check where the extension signer is used. This is most likely where `Signer` is imported from `@reef-chain/evm-provider`.
 2. the signer for the account should be acquired dynamically. You have 2 options:
 
   1. Change it to use `web3FromAddress(address: string)`:
 
   ```
-    import { web3FromAddress } from "@reef-defi/extension-dapp";
+    import { web3FromAddress } from "@reef-chain/extension-dapp";
     const injector = await web3FromAddress('5DTestUPts3kjeXSTMyerHihn1uwMfLj8vU8sqF7qYrFabHE');
   ```
 
@@ -134,7 +134,7 @@ If you use `@polkadot/extension-dapp` dependencies, change them to `@reef-defi/e
   2. Or use `web3FromSource` call, which accepts the extension's name, which can be found in the `meta` field:
 
   ```js
-  import { web3FromSource } from "@reef-defi/extension-dapp";
+  import { web3FromSource } from "@reef-chain/extension-dapp";
   import { keyring } from "@polkadot/ui-keyring";
 
     const getAccountSigner = async (accountId: string) => {
@@ -152,7 +152,7 @@ If you use `@polkadot/extension-dapp` dependencies, change them to `@reef-defi/e
   where `accountId` is the account address. If you do not have `keyring` loaded, use the `injectedAccounts` array obtained from `web3Accounts`, e.g.
 
   ```js
-  import { web3Accounts } from '@reef-defi/extension-dapp';
+  import { web3Accounts } from '@reef-chain/extension-dapp';
 
   await injectedPromise
     .then(() => web3Accounts())
@@ -216,9 +216,9 @@ This approach is used to support multiple external signers in for instance [apps
 
 The extension injection interfaces are generic, i.e. it is designed to allow any extension developer to easily inject extensions (that conforms to a specific interface) and at the same time, it allows for any dapp developer to easily enable the interfaces from multiple extensions at the same time. It is not an all-or-nothing approach, but rather it is an ecosystem where the user can choose which extensions fit their style best.
 
-From a dapp developer perspective, the only work needed is to include the [@reef-defi/extension-dapp](packages/extension-dapp/) package and call the appropriate enabling function to retrieve all the extensions and their associated interfaces.
+From a dapp developer perspective, the only work needed is to include the [@reef-chain/extension-dapp](packages/extension-dapp/) package and call the appropriate enabling function to retrieve all the extensions and their associated interfaces.
 
-From an extension developer perspective, the only work required is to enable the extension via the razor-thin [@reef-defi/extension-inject](packages/extension-inject/) wrapper. Any dapp using the above interfaces will have access to the extension via this interface.
+From an extension developer perspective, the only work required is to enable the extension via the razor-thin [@reef-chain/extension-inject](packages/extension-inject/) wrapper. Any dapp using the above interfaces will have access to the extension via this interface.
 
 When there is more than one extension, each will populate an entry via the injection interface and each will be made available to the dapp. The `Injected` interface, as returned via `enable`, contains the following information for any compliant extension -
 
@@ -259,7 +259,7 @@ interface Signer extends SignerInterface {
 
 ## Injection information
 
-The information contained in this section may change and evolve. It is therefore recommended that all access is done via the [@reef-defi/extension-dapp](packages/extension-dapp/) (for dapps) and [@reef-defi/extension-inject](packages/extension-inject/) (for extensions) packages, which removes the need to work with the lower-level targets.
+The information contained in this section may change and evolve. It is therefore recommended that all access is done via the [@reef-chain/extension-dapp](packages/extension-dapp/) (for dapps) and [@reef-chain/extension-inject](packages/extension-inject/) (for extensions) packages, which removes the need to work with the lower-level targets.
 
 The extension injects `injectedWeb3` into the global `window` object, exposing the following: (This is meant to be generic across extensions, allowing any dapp to utilize multiple signers, and pull accounts from multiples, as they are available.)
 

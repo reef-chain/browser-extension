@@ -5,21 +5,21 @@
     "baseUrl": ".",
     "jsx": "react",
     "paths": {
-      "@reef-defi/extension": ["packages/extension/src"],
-      "@reef-defi/extension/*": ["packages/extension/src/*"],
-      "@reef-defi/extension-base": ["packages/extension-base/src"],
-      "@reef-defi/extension-base/*": ["packages/extension-base/src/*"],
-      "@reef-defi/extension-chains": ["packages/extension-chains/src"],
-      "@reef-defi/extension-chains/*": ["packages/extension-chains/src/*"],
-      "@reef-defi/extension-compat-metamask": [
+      "@reef-chain/extension": ["packages/extension/src"],
+      "@reef-chain/extension/*": ["packages/extension/src/*"],
+      "@reef-chain/extension-base": ["packages/extension-base/src"],
+      "@reef-chain/extension-base/*": ["packages/extension-base/src/*"],
+      "@reef-chain/extension-chains": ["packages/extension-chains/src"],
+      "@reef-chain/extension-chains/*": ["packages/extension-chains/src/*"],
+      "@reef-chain/extension-compat-metamask": [
         "packages/extension-compat-metamask/src"
       ],
-      "@reef-defi/extension-dapp": ["packages/extension-dapp/src"],
-      "@reef-defi/extension-dapp/*": ["packages/extension-dapp/src/*"],
-      "@reef-defi/extension-inject": ["packages/extension-inject/src"],
-      "@reef-defi/extension-inject/*": ["packages/extension-inject/src/*"],
-      "@reef-defi/extension-ui": ["packages/extension-ui/src"],
-      "@reef-defi/extension-ui/*": ["packages/extension-ui/src/*"]
+      "@reef-chain/extension-dapp": ["packages/extension-dapp/src"],
+      "@reef-chain/extension-dapp/*": ["packages/extension-dapp/src/*"],
+      "@reef-chain/extension-inject": ["packages/extension-inject/src"],
+      "@reef-chain/extension-inject/*": ["packages/extension-inject/src/*"],
+      "@reef-chain/extension-ui": ["packages/extension-ui/src"],
+      "@reef-chain/extension-ui/*": ["packages/extension-ui/src/*"]
     },
     "skipLibCheck": true
   }

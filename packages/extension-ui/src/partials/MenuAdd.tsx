@@ -7,7 +7,7 @@ import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { faUsb } from '@fortawesome/free-brands-svg-icons';
 import { faCodeBranch, faFileExport, faFileUpload, faKey, faPlusCircle, faQrcode, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Header } from '@reef-defi/extension-ui/partials';
+import { Header } from '@reef-chain/extension-ui/partials';
 import React, { useCallback, useContext } from 'react';
 import styled from 'styled-components';
 

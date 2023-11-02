@@ -4,7 +4,7 @@
 import type { Theme, ThemeProps } from '../types';
 
 import { faExpand, faTasks } from '@fortawesome/free-solid-svg-icons';
-import { appState, availableNetworks, hooks, Network } from '@reef-defi/react-lib';
+import { appState, availableNetworks, hooks, Network } from '@reef-chain/react-lib';
 import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import styled, { ThemeContext } from 'styled-components';
 

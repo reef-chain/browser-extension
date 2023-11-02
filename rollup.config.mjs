@@ -4,7 +4,7 @@
 import { createBundle } from '@reef-defi/dev/config/rollup';
 import path from 'path';
 
-const pkgs = ['@reef-defi/extension-dapp'];
+const pkgs = ['@reef-chain/extension-dapp'];
 
 const external = [
   ...pkgs,
@@ -20,7 +20,7 @@ const entries = [
 ].reduce(
   (all, p) => ({
     ...all,
-    [`@reef-defi/${p}`]: path.resolve(process.cwd(), `packages/${p}/build`)
+    [`@reef-chain/${p}`]: path.resolve(process.cwd(), `packages/${p}/build`)
   }),
   {}
 );

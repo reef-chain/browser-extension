@@ -8,7 +8,7 @@ import type { AccountInfo } from '.';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { faArrowRight, faCaretDown, faCaretRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { validateSeed } from '@reef-defi/extension-ui/messaging';
+import { validateSeed } from '@reef-chain/extension-ui/messaging';
 import { objectSpread } from '@reef-defi/util';
 import React, { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';

@@ -6,7 +6,7 @@
   "homepage": "https://github.com/reef-defi/browser-extension/tree/master/packages/extension-dapp#readme",
   "license": "Apache-2",
   "maintainers": [],
-  "name": "@reef-defi/extension-dapp",
+  "name": "@reef-chain/extension-dapp",
   "repository": {
     "directory": "packages/extension-dapp",
     "type": "git",
@@ -18,7 +18,7 @@
   "main": "index.js",
   "dependencies": {
     "@babel/runtime": "^7.16.0",
-    "@reef-defi/extension-inject": "^1.0.23",
+    "@reef-chain/extension-inject": "^1.0.23",
     "@reef-defi/util": "^7.8.2",
     "@reef-defi/util-crypto": "^7.8.2"
   },

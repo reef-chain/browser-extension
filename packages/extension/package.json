@@ -2,11 +2,11 @@
   "author": "Reef Chain",
   "bugs": "https://github.com/reef-defi/browser-extension/issues",
   "contributors": [],
-  "description": "A sample signer extension for the @reef-defi/api",
+  "description": "A sample signer extension for Reef chain",
   "homepage": "https://github.com/reef-defi/browser-extension/tree/master/packages/extension#readme",
   "license": "Apache-2",
   "maintainers": [],
-  "name": "@reef-defi/extension",
+  "name": "@reef-chain/extension",
   "repository": {
     "directory": "packages/extension",
     "type": "git",
@@ -17,9 +17,9 @@
   "version": "1.0.23",
   "dependencies": {
     "@babel/runtime": "^7.16.0",
-    "@reef-defi/extension-base": "^1.0.23",
-    "@reef-defi/extension-inject": "^1.0.23",
-    "@reef-defi/extension-ui": "^1.0.23"
+    "@reef-chain/extension-base": "^1.0.23",
+    "@reef-chain/extension-inject": "^1.0.23",
+    "@reef-chain/extension-ui": "^1.0.23"
   },
   "devDependencies": {
     "@reef-defi/dev": "^0.63.20",

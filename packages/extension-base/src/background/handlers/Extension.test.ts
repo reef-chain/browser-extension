@@ -3,8 +3,8 @@
 
 import '../../../../../__mocks__/chrome';
 
-import type { ResponseSigning } from '@reef-defi/extension-base/background/types';
-import type { MetadataDef } from '@reef-defi/extension-inject/types';
+import type { ResponseSigning } from '@reef-chain/extension-base/background/types';
+import type { MetadataDef } from '@reef-chain/extension-inject/types';
 import type { KeyringPair } from '@reef-defi/keyring/types';
 import type { ExtDef } from '@polkadot/types/extrinsic/signedExtensions/types';
 import type { SignerPayloadJSON } from '@polkadot/types/types';

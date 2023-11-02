@@ -1,5 +1,5 @@
-import { AccountJson } from '@reef-defi/extension-base/background/types';
-import { sendMessage, subscribeAccounts } from '@reef-defi/extension-ui/messaging';
+import { AccountJson } from '@reef-chain/extension-base/background/types';
+import { sendMessage, subscribeAccounts } from '@reef-chain/extension-ui/messaging';
 
 export async function selectAccount (address: string): Promise<boolean> {
   return sendMessage('pri(accounts.select)', { address });

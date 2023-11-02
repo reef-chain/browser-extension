@@ -1,7 +1,7 @@
-import { Provider, Signer as ReefVMSigner } from '@reef-defi/evm-provider';
-import Accounts from '@reef-defi/extension-base/page/Accounts';
-import SigningKey from '@reef-defi/extension-base/page/Signer';
-import { InjectedAccount, ReefInjectedSigner, ReefSignerReqOptions, ReefSignerResponse, ReefSignerStatus, ReefVM, Unsubcall } from '@reef-defi/extension-inject/types';
+import { Provider, Signer as ReefVMSigner } from '@reef-chain/evm-provider';
+import Accounts from '@reef-chain/extension-base/page/Accounts';
+import SigningKey from '@reef-chain/extension-base/page/Signer';
+import { InjectedAccount, ReefInjectedSigner, ReefSignerReqOptions, ReefSignerResponse, ReefSignerStatus, ReefVM, Unsubcall } from '@reef-chain/extension-inject/types';
 
 import { ReefProvider } from './ReefProvider';
 

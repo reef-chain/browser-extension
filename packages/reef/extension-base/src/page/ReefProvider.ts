@@ -1,7 +1,7 @@
 import { network } from '@reef-chain/util-lib';
-import { Provider } from '@reef-defi/evm-provider';
-import { SendRequest } from '@reef-defi/extension-base/page/types';
-import { ReefInjectedProvider, Unsubcall } from '@reef-defi/extension-inject/types';
+import { Provider } from '@reef-chain/evm-provider';
+import { SendRequest } from '@reef-chain/extension-base/page/types';
+import { ReefInjectedProvider, Unsubcall } from '@reef-chain/extension-inject/types';
 
 type ProviderRpc = { rpcUrl: string; provider: Provider; };
 

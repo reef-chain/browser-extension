@@ -6,7 +6,7 @@
   "homepage": "https://github.com/reef-defi/browser-extension/tree/master/packages/extension-chains#readme",
   "license": "Apache-2",
   "maintainers": [],
-  "name": "@reef-defi/extension-chains",
+  "name": "@reef-chain/extension-chains",
   "repository": {
     "directory": "packages/extension-chains",
     "type": "git",

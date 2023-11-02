@@ -1,8 +1,8 @@
-import { Provider } from '@reef-defi/evm-provider';
-import { AccountJson } from '@reef-defi/extension-base/background/types';
-import Signer from '@reef-defi/extension-base/page/Signer';
-import { sendMessage } from '@reef-defi/extension-ui/messaging';
-import { ReefSigner } from '@reef-defi/react-lib';
+import { Provider } from '@reef-chain/evm-provider';
+import { AccountJson } from '@reef-chain/extension-base/background/types';
+import Signer from '@reef-chain/extension-base/page/Signer';
+import { sendMessage } from '@reef-chain/extension-ui/messaging';
+import { ReefSigner } from '@reef-chain/react-lib';
 import { useEffect, useState } from 'react';
 
 import { toReefSigner } from '../state/util';

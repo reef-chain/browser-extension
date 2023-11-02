@@ -1,10 +1,10 @@
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { ActionContext } from '@reef-defi/extension-ui/components';
-import { Header } from '@reef-defi/extension-ui/partials';
-import Account from '@reef-defi/extension-ui/Popup/Accounts/Account';
-import { appState, hooks, ReefSigner, TokenWithAmount, utils } from '@reef-defi/react-lib';
+import { ActionContext } from '@reef-chain/extension-ui/components';
+import { Header } from '@reef-chain/extension-ui/partials';
+import Account from '@reef-chain/extension-ui/Popup/Accounts/Account';
+import { appState, hooks, ReefSigner, TokenWithAmount, utils } from '@reef-chain/react-lib';
 import React, { useCallback, useContext } from 'react';
 
 import { Loading, UikText } from './../../uik';

@@ -3,12 +3,12 @@
 
 // Runs in the extension background, handling all keyring access
 
-import type { RequestSignatures, TransportRequestMessage } from '@reef-defi/extension-base/background/types';
+import type { RequestSignatures, TransportRequestMessage } from '@reef-chain/extension-base/background/types';
 
-import handlers from '@reef-defi/extension-base/background/handlers';
-import { PORT_CONTENT, PORT_EXTENSION } from '@reef-defi/extension-base/defaults';
-import { AccountsStore } from '@reef-defi/extension-base/stores';
-import chrome from '@reef-defi/extension-inject/chrome';
+import handlers from '@reef-chain/extension-base/background/handlers';
+import { PORT_CONTENT, PORT_EXTENSION } from '@reef-chain/extension-base/defaults';
+import { AccountsStore } from '@reef-chain/extension-base/stores';
+import chrome from '@reef-chain/extension-inject/chrome';
 import { assert } from '@reef-defi/util';
 import { cryptoWaitReady } from '@reef-defi/util-crypto';
 

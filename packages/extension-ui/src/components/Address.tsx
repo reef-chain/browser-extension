@@ -1,8 +1,8 @@
 // Copyright 2019-2021 @polkadot/extension-ui authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { AccountJson, AccountWithChildren } from '@reef-defi/extension-base/background/types';
-import type { Chain } from '@reef-defi/extension-chains/types';
+import type { AccountJson, AccountWithChildren } from '@reef-chain/extension-base/background/types';
+import type { Chain } from '@reef-chain/extension-chains/types';
 import type { SettingsStruct } from '@polkadot/ui-settings/types';
 import type { KeypairType } from '@polkadot/util-crypto/types';
 import type { ThemeProps } from '../types';
@@ -12,8 +12,8 @@ import { faUsb } from '@fortawesome/free-brands-svg-icons';
 import { faCopy, faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
 import { faCodeBranch, faEllipsisV, faQrcode } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Provider } from '@reef-defi/evm-provider';
-import { appState, hooks, ReefSigner, utils } from '@reef-defi/react-lib';
+import { Provider } from '@reef-chain/evm-provider';
+import { appState, hooks, ReefSigner, utils } from '@reef-chain/react-lib';
 import React, { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import styled from 'styled-components';

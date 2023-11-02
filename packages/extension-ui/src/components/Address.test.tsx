@@ -3,13 +3,13 @@
 
 import '../../../../__mocks__/chrome';
 
-import type { AccountJson } from '@reef-defi/extension-base/background/types';
+import type { AccountJson } from '@reef-chain/extension-base/background/types';
 import type { ReactWrapper } from 'enzyme';
 import type { Signer as InjectedSigner } from '@polkadot/api/types';
 import type { IconTheme } from '@polkadot/react-identicon/types';
 import type { Props as AddressComponentProps } from './Address';
 
-import { ReefSigner } from '@reef-defi/react-lib';
+import { ReefSigner } from '@reef-chain/react-lib';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import { configure, mount } from 'enzyme';
 import { BigNumber } from 'ethers';
