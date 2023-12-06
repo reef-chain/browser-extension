@@ -176,4 +176,9 @@
   "Show Account Address QR": "",
   "Show Account Address": "",
   "Account QR": ""
+  "Show private key": "",
+  "Export privatekey": "",
+  "I want to export private key of this account": "",
+  "Copy Private Key": "",
+  "Export Private Key": ""
 }
