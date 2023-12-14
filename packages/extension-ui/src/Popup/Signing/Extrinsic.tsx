@@ -41,7 +41,7 @@ function decodeMethod (data: string, chain: Chain, specVersion: BN): Decoded {
   try {
     if (specVersion.eqn(chain.specVersion)) {
       method = chain.registry.createType('Call', data);
-      args = (method.toHuman() as { args: AnyJson }).args;
+      args = (method?.toHuman() as { args: AnyJson }).args;
     } else {
       console.log(displayDecodeVersion('Outdated metadata to decode', chain, specVersion));
     }

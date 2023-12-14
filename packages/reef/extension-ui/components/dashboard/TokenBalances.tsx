@@ -1,10 +1,10 @@
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { ActionContext } from '@reef-chain/extension-ui/components';
+import { ActionContext, ReefStateContext } from '@reef-chain/extension-ui/components';
 import { Header } from '@reef-chain/extension-ui/partials';
 import Account from '@reef-chain/extension-ui/Popup/Accounts/Account';
-import { appState, hooks, ReefSigner, TokenWithAmount, utils } from '@reef-chain/react-lib';
+import {  TokenWithAmount, utils } from '@reef-chain/react-lib';
 import React, { useCallback, useContext } from 'react';
 
 import { Loading, UikText } from './../../uik';
@@ -18,7 +18,7 @@ interface TokenBalances {
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const TokenBalances = ({ tokens }: TokenBalances): JSX.Element => {
-  const selectedAccount: ReefSigner | undefined | null = hooks.useObservableState(appState.selectedSigner$);
+  const {selectedReefSigner} = useContext(ReefStateContext)
 
   const onAction = useContext(ActionContext);
 
@@ -47,7 +47,7 @@ export const TokenBalances = ({ tokens }: TokenBalances): JSX.Element => {
       <Account
         hideBalance
         presentation
-        {...selectedAccount}
+        {...selectedReefSigner}
       />
     </div>
     <div className='token-balances'>

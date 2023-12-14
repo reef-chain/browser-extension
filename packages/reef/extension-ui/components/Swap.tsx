@@ -1,8 +1,8 @@
-import { appState, Components, hooks, Network, ReefSigner, reefTokenWithAmount, Settings, store, Token } from '@reef-chain/react-lib';
+import { Components, hooks, reefTokenWithAmount, Settings, store, Token } from '@reef-chain/react-lib';
 import React, { useContext, useReducer } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 
-import { TokenContext, TokenPricesContext } from '../../../extension-ui/src/components/contexts';
+import { ReefStateContext, TokenContext, TokenPricesContext } from '../../../extension-ui/src/components/contexts';
 import { Loading } from '../uik';
 import { SigningOrChildren } from './SigningOrChildren';
 import { addressReplacer, notify, SPECIFIED_SWAP_URL, UrlAddressParams } from './utils';
@@ -16,8 +16,7 @@ export const Swap = (): JSX.Element => {
   const tokenPrices = useContext(TokenPricesContext);
   const { address1, address2 } = useParams<UrlAddressParams>();
   const theme = localStorage.getItem('theme');
-  const network: Network|undefined = hooks.useObservableState(appState.currentNetwork$);
-  const signer: ReefSigner|undefined | null = hooks.useObservableState(appState.selectedSigner$);
+  const {network,selectedReefSigner}= useContext(ReefStateContext)
   const [state, dispatch] = useReducer(store.swapReducer, store.initialSwapState);
 
   // hook manages all necessary swap updates
@@ -25,18 +24,17 @@ export const Swap = (): JSX.Element => {
     address1: address1 || REEF_ADDRESS,
     address2,
     dispatch,
-    network,
     state,
     tokens,
     tokenPrices,
-    account: signer || undefined
+    account: selectedReefSigner || undefined
   });
 
   // Actions
   const onSwap = hooks.onSwap({
     state,
     network,
-    account: signer || undefined,
+    account: selectedReefSigner || undefined,
     dispatch,
     notify,
     updateTokenState: async () => {}, // eslint-disable-line
@@ -78,12 +76,12 @@ export const Swap = (): JSX.Element => {
 
   return (
     <SigningOrChildren>
-      {(!tokens || !signer || !network) && <Loading />}
-      {!!signer && !!network &&
+      {(!tokens || !selectedReefSigner || !network) && <Loading />}
+      {!!selectedReefSigner && !!network &&
           <div className={theme === 'dark' ? 'theme-dark' : ''}>
             <SwapComponent
               tokens={tokens}
-              account={signer}
+              account={selectedReefSigner}
               state={state}
               actions={actions}
             />

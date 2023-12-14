@@ -1,16 +1,16 @@
 {
   "author": "Reef Chain",
-  "bugs": "https://github.com/reef-defi/browser-extension/issues",
+  "bugs": "https://github.com/reef-chain/browser-extension/issues",
   "contributors": [],
   "description": "Metamask compatibility layer",
-  "homepage": "https://github.com/reef-defi/browser-extension/tree/master/packages/extension-compat-metamask#readme",
+  "homepage": "https://github.com/reef-chain/browser-extension/tree/master/packages/extension-compat-metamask#readme",
   "license": "Apache-2",
   "maintainers": [],
   "name": "@reef-chain/extension-compat-metamask",
   "repository": {
     "directory": "packages/extension-compat-metamask",
     "type": "git",
-    "url": "https://github.com/reef-defi/browser-extension.git"
+    "url": "https://github.com/reef-chain/browser-extension.git"
   },
   "sideEffects": false,
   "type": "module",

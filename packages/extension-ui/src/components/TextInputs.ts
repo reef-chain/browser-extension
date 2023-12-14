@@ -6,7 +6,25 @@ import type { ThemeProps } from '../types';
 import styled, { css } from 'styled-components';
 
 interface Props extends ThemeProps {
+  autoCapitalize?: string;
+  autoCorrect?: string;
   withError?: boolean;
+  className?: string;
+  onChange?: any;
+  ref?: any;
+  type?:any;
+  placeholder?: string;
+  value?: any;
+  defaultValue?:any;
+  disabled?:any;
+  onBlur?:any;
+  onKeyPress?:any;
+  rows?:any;
+  readOnly?:any;
+  withReset?: boolean;
+  autoFocus?: boolean;
+  spellCheck?: boolean;
+  
 }
 
 const TextInput = css(({ theme, withError }: Props) => `

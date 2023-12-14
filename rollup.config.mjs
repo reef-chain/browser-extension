@@ -4,13 +4,13 @@
 import { createBundle } from '@reef-defi/dev/config/rollup';
 import path from 'path';
 
-const pkgs = ['@reef-chain/extension-dapp'];
+const pkgs = ['@reef-defi/extension-dapp'];
 
 const external = [
   ...pkgs,
-  '@reef-defi/networks',
-  '@reef-defi/util',
-  '@reef-defi/util-crypto'
+  '@reef-chain/networks',
+  '@reef-chain/util',
+  '@reef-chain/util-crypto'
 ];
 
 const entries = [

@@ -4,14 +4,11 @@
 import type { Theme, ThemeProps } from '../types';
 
 import { faExpand, faTasks } from '@fortawesome/free-solid-svg-icons';
-import { appState, availableNetworks, hooks, Network } from '@reef-chain/react-lib';
 import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import styled, { ThemeContext } from 'styled-components';
-
+import {network as nw} from "@reef-chain/util-lib";
 import settings from '@polkadot/ui-settings';
-
-import { selectNetwork } from '../../../reef/extension-ui/messaging';
-import { ActionContext, ActionText, Checkbox, Dropdown, Menu, MenuDivider, MenuItem, Svg, Switch, themes, ThemeSwitchContext } from '../components';
+import { ActionContext, ActionText, Checkbox, Dropdown, Menu, MenuDivider, MenuItem, ReefStateContext, Svg, Switch, themes, ThemeSwitchContext } from '../components';
 import useIsPopup from '../hooks/useIsPopup';
 import useTranslation from '../hooks/useTranslation';
 import { setNotification, windowOpen } from '../messaging';
@@ -26,14 +23,15 @@ interface Props extends ThemeProps {
 const notificationOptions = ['Extension', 'PopUp', 'Window']
   .map((item) => ({ text: item, value: item.toLowerCase() }));
 
-const networkOptions = [availableNetworks.mainnet, availableNetworks.testnet]
+// todo @anukulpandey - maybe add localhost as well like MM
+const networkOptions = [nw.AVAILABLE_NETWORKS.mainnet, nw.AVAILABLE_NETWORKS.testnet]
   .map((network) => ({ text: network.name, value: network.rpcUrl }));
 
 function MenuSettings ({ className, onClose, reference }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
   const [camera, setCamera] = useState(settings.camera === 'on');
   const [notification, updateNotification] = useState(settings.notification);
-  const network = hooks.useObservableState(appState.currentNetwork$);
+  const {network,reefState} = useContext(ReefStateContext);
   const themeContext = useContext(ThemeContext as React.Context<Theme>);
   const setTheme = useContext(ThemeSwitchContext);
   const isPopup = useIsPopup();
@@ -83,12 +81,8 @@ function MenuSettings ({ className, onClose, reference }: Props): React.ReactEle
 
   const _onNetworkChange = useCallback(
     (value: string) => {
-      const selectedNetwork: Network | undefined = Object.values(availableNetworks)
-        .find((network: Network) => network.rpcUrl === value);
-
-      if (selectedNetwork) {
-        selectNetwork(selectedNetwork.rpcUrl).catch((err) => console.log('Error selectNetwork ', err));
-      }
+  const _network = Object.values(nw.AVAILABLE_NETWORKS).find((network:any) => network.rpcUrl === value);
+      if(_network)reefState.setSelectedNetwork(_network);
     }, []
   );
 

@@ -5,10 +5,11 @@ import type { AccountsContext, AuthorizeRequest, MetadataRequest, SigningRequest
 import type { SettingsStruct } from '@polkadot/ui-settings/types';
 import type { AvailableThemes } from './themes';
 
-import { LastPoolReserves, Token } from '@reef-chain/react-lib';
+import { LastPoolReserves, Network, ReefSigner, Token } from '@reef-chain/react-lib';
 import React from 'react';
 
 import settings from '@polkadot/ui-settings';
+import { Provider } from '@reef-chain/evm-provider';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const noop = (): void => undefined;
@@ -27,6 +28,20 @@ const SigningReqContext = React.createContext<SigningRequest[]>([]);
 const ThemeSwitchContext = React.createContext<(theme: AvailableThemes) => void>(noop);
 const ToastContext = React.createContext<({show: (message: string) => void})>({ show: noop });
 const TokenContext = React.createContext<Token[]>([]);
+
+const ReefStateContext = React.createContext<{
+  reefState:any,
+  selectedReefSigner:ReefSigner | undefined | null,signers:ReefSigner[] | undefined | null,
+  provider:Provider | undefined,
+  network:Network|undefined
+}>({
+  reefState:undefined,
+  selectedReefSigner:null,
+  signers:[],
+  provider:undefined,
+  network:undefined
+});
+
 const TokenPricesContext = React.createContext<TokenPrices>({});
 const PoolContext = React.createContext<LastPoolReserves[]>([]);
 
@@ -42,5 +57,6 @@ export {
   ToastContext,
   TokenContext,
   TokenPricesContext,
-  PoolContext
+  PoolContext,
+  ReefStateContext
 };

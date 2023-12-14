@@ -1,17 +1,25 @@
-import { PoolContext, TokenContext, TokenPricesContext } from '@reef-chain/extension-ui/components';
-import { appState, hooks, ReefSigner } from '@reef-chain/react-lib';
-import React, { useMemo } from 'react';
+import { PoolContext, ReefStateContext, TokenContext, TokenPricesContext } from '@reef-chain/extension-ui/components';
+import { hooks, ReefSigner } from '@reef-chain/react-lib';
+import React, { useMemo,useContext } from 'react';
+import axios from 'axios';
 
-export const ReefContext = (props: {children?: any; apollo: any, signer?: ReefSigner|null}): JSX.Element => {
-  const reefPrice = hooks.useObservableState(appState.reefPrice$);
-  const tokens = hooks.useAllTokens(props.signer?.address, props.apollo);
-  const pools = hooks.useAllPools();
-  const tokenPrices = useMemo(
-    () => hooks.estimatePrice(tokens[0], pools, reefPrice || 0),
-    [tokens, pools, reefPrice]
+export const ReefContext = (props: {children?: any; signer?: ReefSigner|null}): JSX.Element => {
+  // const reefPrice = hooks.useObservableState(appState.reefPrice$);
+  // const reefPrice = 0 //@anukulpandey todo fix later
+  const {reefState} = useContext(ReefStateContext)
+  const tokens:any = hooks.useObservableState(reefState.selectedTokenPrices$,[]);
+  const pools = hooks.useAllPools(axios as any);
+  const tokenPrices= useMemo(
+    // eslint-disable-line
+    () => (tokens ? tokens.reduce((prices: any, tkn:any) => {
+      prices[(tkn as any).address] = tkn.price;// eslint-disable-line
+      return prices;
+    }, {}) : []),
+    [tokens],
   );
 
   return (<>
+  
     <TokenContext.Provider value={tokens[0]}>
       <PoolContext.Provider value={pools}>
         <TokenPricesContext.Provider value={tokenPrices}>

@@ -31,11 +31,14 @@ export function metadataExpand (definition: MetadataDef, isPartial = false): Cha
     registry.register(types);
   }
 
-  registry.setChainProperties(registry.createType('ChainProperties', {
+  registry.setChainProperties(
+    // @ts-ignore
+    registry.createType('ChainProperties', {
     ss58Format,
     tokenDecimals,
-    tokenSymbol
-  }));
+    tokenSymbol,
+  } )
+  );
 
   const hasMetadata = !!metaCalls && !isPartial;
 

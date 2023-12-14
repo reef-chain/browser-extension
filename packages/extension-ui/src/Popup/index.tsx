@@ -4,11 +4,11 @@
 import type { AccountJson, AccountsContext, AuthorizeRequest, MetadataRequest, SigningRequest } from '@reef-chain/extension-base/background/types';
 import type { SettingsStruct } from '@polkadot/ui-settings/types';
 
-import { ApolloClient, ApolloProvider } from '@apollo/client';
-import { Provider } from '@reef-chain/evm-provider';
+// import { ApolloClient, ApolloProvider } from '@apollo/client';
+// import { Provider } from '@reef-chain/evm-provider';
 import { PHISHING_PAGE_REDIRECT } from '@reef-chain/extension-base/defaults';
 import { canDerive } from '@reef-chain/extension-base/utils';
-import { appState, availableNetworks, graphql, hooks, ReefSigner } from '@reef-chain/react-lib';
+import { hooks, Network, ReefSigner } from '@reef-chain/react-lib';
 import React, { useCallback, useEffect, useState } from 'react';
 import { Route, Switch } from 'react-router';
 
@@ -18,10 +18,11 @@ import { Bind } from '../../../reef/extension-ui/components/Bind';
 import { HeaderComponent } from '../../../reef/extension-ui/components/HeaderComponent';
 import { ReefContext } from '../../../reef/extension-ui/components/ReefContext';
 import { useReefSigners } from '../../../reef/extension-ui/hooks/useReefSigners';
-import { selectAccount, subscribeNetwork } from '../../../reef/extension-ui/messaging';
+import { selectAccount } from '../../../reef/extension-ui/messaging';
 import { ErrorBoundary, Loading } from '../components';
-import { AccountContext, ActionContext, AuthorizeReqContext, MediaContext, MetadataReqContext, SettingsContext, SigningReqContext } from '../components/contexts';
+import { AccountContext, ActionContext, AuthorizeReqContext, MediaContext, MetadataReqContext, ReefStateContext, SettingsContext, SigningReqContext } from '../components/contexts';
 import { chooseTheme } from '../components/themes';
+import {reefState,network as nw} from "@reef-chain/util-lib";
 import ToastProvider from '../components/Toast/ToastProvider';
 import { subscribeAccounts, subscribeAuthorizeRequests, subscribeMetadataRequests, subscribeSigningRequests } from '../messaging';
 import { buildHierarchy } from '../util/buildHierarchy';
@@ -43,6 +44,7 @@ import PrivateKey from './PrivateKey';
 import RestoreJson from './RestoreJson';
 import Signing from './Signing';
 import Welcome from './Welcome';
+import { Provider } from '@reef-chain/evm-provider';
 
 const startSettings = uiSettings.get();
 
@@ -79,12 +81,29 @@ function initAccountContext (accounts: AccountJson[], selectedAccount: AccountJs
   };
 }
 
+const ACTIVE_NETWORK_LS_KEY = 'reef-app-active-network';
+
+const getNetworkFallback = (): Network => {
+  let storedNetwork;
+  try {
+    storedNetwork = localStorage.getItem(ACTIVE_NETWORK_LS_KEY);
+    storedNetwork = JSON.parse(storedNetwork!);
+
+    storedNetwork = nw.AVAILABLE_NETWORKS[storedNetwork.name];
+  } catch (e) {
+    // when cookies disabled localStorage can throw
+  }
+
+  return storedNetwork != null ? storedNetwork : nw.AVAILABLE_NETWORKS.mainnet;
+};
+
 export default function Popup (): React.ReactElement {
   const [accounts, setAccounts] = useState<null | AccountJson[]>(null);
-  const provider: Provider|undefined = hooks.useObservableState(appState.currentProvider$);
+
+  const provider: Provider|undefined = hooks.useObservableState(reefState.selectedProvider$);
+
   const signers = useReefSigners(accounts, provider);
 
-  hooks.useInitReefState('Reef Chain Wallet Extension', { signers });
   const [accountCtx, setAccountCtx] = useState<AccountsContext>({ accounts: [], hierarchy: [] });
   const [authRequests, setAuthRequests] = useState<null | AuthorizeRequest[]>(null);
   const [cameraOn, setCameraOn] = useState(startSettings.camera === 'on');
@@ -94,8 +113,17 @@ export default function Popup (): React.ReactElement {
   const [isWelcomeDone, setWelcomeDone] = useState(false);
   const [settingsCtx, setSettingsCtx] = useState<SettingsStruct>(startSettings);
 
-  const currentSigner: ReefSigner | undefined | null = hooks.useObservableState(appState.selectedSigner$);
-  const apollo: ApolloClient<any> | undefined = hooks.useObservableState(graphql.apolloClientInstance$);
+  const selectedAddress = hooks.useObservableState(reefState.selectedAddress$);
+
+  const currentSigner: ReefSigner | undefined | null = signers.find(signer=>signer.address===selectedAddress);
+
+  console.log(reefState);
+  const network:Network|undefined = hooks.useObservableState(reefState.selectedNetwork$)
+  if(!network){
+    reefState.setSelectedNetwork(network || getNetworkFallback())
+  }
+
+  // const apollo: ApolloClient<any> | undefined = hooks.useObservableState(graphql.apolloClientInstance$);
 
   const _onAction = useCallback(
     (to?: string): void => {
@@ -121,10 +149,6 @@ export default function Popup (): React.ReactElement {
       setCameraOn(settings.camera === 'on');
     });
 
-    // REEF update
-    subscribeNetwork((rpcUrl) => appState.setCurrentNetwork(Object.values(availableNetworks).find((n) => n.rpcUrl === rpcUrl) || availableNetworks.mainnet))
-      .catch((err) => console.log('Error Popup subscribeNetwork ', err));
-
     _onAction();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -141,7 +165,7 @@ export default function Popup (): React.ReactElement {
 
       setAccountCtx(initAccountContext(accounts || [], selAcc || null));
 
-      appState.setCurrentAddress(selAcc?.address);
+      reefState.setSelectedAddress(selAcc?.address);
     };
 
     onAccounts().catch((err) => console.log('Error onAccounts ', err));
@@ -171,7 +195,8 @@ export default function Popup (): React.ReactElement {
     : wrapWithErrorBoundary(<Welcome />, 'welcome');
 
   return (
-    <Loading>{accounts && authRequests && metaRequests && signRequests && apollo && (
+    <Loading>{accounts && authRequests && metaRequests && signRequests && (
+      <ReefStateContext.Provider value={{reefState,selectedReefSigner:currentSigner,signers,provider,network}}>
       <ActionContext.Provider value={_onAction}>
         <SettingsContext.Provider value={settingsCtx}>
           <AccountContext.Provider value={accountCtx}>
@@ -179,12 +204,12 @@ export default function Popup (): React.ReactElement {
               <MediaContext.Provider value={cameraOn && mediaAllowed}>
                 <MetadataReqContext.Provider value={metaRequests}>
                   <SigningReqContext.Provider value={signRequests}>
-                    {apollo && (<ApolloProvider client={apollo}>
+                    {/* {apollo && (<ApolloProvider client={apollo}> */}
                       <ReefContext
-                        apollo={apollo}
+                        // apollo={apollo}
                         signer={currentSigner}>
                       </ReefContext>
-                    </ApolloProvider>)}
+                    {/* </ApolloProvider>)} */}
                     <ToastProvider>
                       {isWelcomeDone && accounts?.length > 0 && authRequests?.length <= 0 && (<HeaderComponent></HeaderComponent>)}
                       <Switch>
@@ -219,6 +244,7 @@ export default function Popup (): React.ReactElement {
           </AccountContext.Provider>
         </SettingsContext.Provider>
       </ActionContext.Provider>
+      </ReefStateContext.Provider>
     )}</Loading>
   );
 }
