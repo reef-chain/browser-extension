@@ -4,8 +4,6 @@ import React, { useMemo,useContext } from 'react';
 import axios from 'axios';
 
 export const ReefContext = (props: {children?: any; signer?: ReefSigner|null}): JSX.Element => {
-  // const reefPrice = hooks.useObservableState(appState.reefPrice$);
-  // const reefPrice = 0 //@anukulpandey todo fix later
   const {reefState} = useContext(ReefStateContext)
   const tokens:any = hooks.useObservableState(reefState.selectedTokenPrices$,[]);
   const pools = hooks.useAllPools(axios as any);
