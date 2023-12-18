@@ -22,7 +22,7 @@ import { selectAccount } from '../../../reef/extension-ui/messaging';
 import { ErrorBoundary, Loading } from '../components';
 import { AccountContext, ActionContext, AuthorizeReqContext, MediaContext, MetadataReqContext, ReefStateContext, SettingsContext, SigningReqContext } from '../components/contexts';
 import { chooseTheme } from '../components/themes';
-import {reefState,network as nw} from "@reef-chain/util-lib";
+import {network as nw} from "@reef-chain/util-lib";
 import ToastProvider from '../components/Toast/ToastProvider';
 import { subscribeAccounts, subscribeAuthorizeRequests, subscribeMetadataRequests, subscribeSigningRequests } from '../messaging';
 import { buildHierarchy } from '../util/buildHierarchy';
@@ -100,6 +100,8 @@ const getNetworkFallback = (): Network => {
 export default function Popup (): React.ReactElement {
   const [accounts, setAccounts] = useState<null | AccountJson[]>(null);
 
+  const {reefState} = hooks.useInitReefState("reef-browser-extension",{});
+
   const provider: Provider|undefined = hooks.useObservableState(reefState.selectedProvider$);
 
   const signers = useReefSigners(accounts, provider);
@@ -117,7 +119,7 @@ export default function Popup (): React.ReactElement {
 
   const currentSigner: ReefSigner | undefined | null = signers.find(signer=>signer.address===selectedAddress);
 
-  console.log(reefState);
+
   const network:Network|undefined = hooks.useObservableState(reefState.selectedNetwork$)
   if(!network){
     reefState.setSelectedNetwork(network || getNetworkFallback())
