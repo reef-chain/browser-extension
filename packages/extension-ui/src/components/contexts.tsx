@@ -5,11 +5,12 @@ import type { AccountsContext, AuthorizeRequest, MetadataRequest, SigningRequest
 import type { SettingsStruct } from '@polkadot/ui-settings/types';
 import type { AvailableThemes } from './themes';
 
-import { LastPoolReserves, Network, ReefSigner, Token } from '@reef-chain/react-lib';
+import { LastPoolReserves, ReefSigner, Token } from '@reef-chain/react-lib';
 import React from 'react';
 
 import settings from '@polkadot/ui-settings';
 import { Provider } from '@reef-chain/evm-provider';
+import { Network } from '@reef-chain/util-lib';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const noop = (): void => undefined;

@@ -5,10 +5,10 @@ import type { AccountJson, AccountsContext, AuthorizeRequest, MetadataRequest, S
 import type { SettingsStruct } from '@polkadot/ui-settings/types';
 
 // import { ApolloClient, ApolloProvider } from '@apollo/client';
-// import { Provider } from '@reef-chain/evm-provider';
+import { Network } from '@reef-chain/util-lib';
 import { PHISHING_PAGE_REDIRECT } from '@reef-chain/extension-base/defaults';
 import { canDerive } from '@reef-chain/extension-base/utils';
-import { hooks, Network, ReefSigner } from '@reef-chain/react-lib';
+import { hooks, ReefSigner } from '@reef-chain/react-lib';
 import React, { useCallback, useEffect, useState } from 'react';
 import { Route, Switch } from 'react-router';
 
