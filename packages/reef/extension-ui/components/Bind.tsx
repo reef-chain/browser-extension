@@ -1,17 +1,18 @@
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { ActionContext, SigningReqContext } from '@reef-chain/extension-ui/components';
+import { ActionContext, ReefStateContext, SigningReqContext } from '@reef-chain/extension-ui/components';
 import { useTranslation } from '@reef-chain/extension-ui/components/translate';
 import { Header } from '@reef-chain/extension-ui/partials';
-import { appState, Components, hooks, ReefSigner } from '@reef-chain/react-lib';
+import { Components, ReefSigner } from '@reef-chain/react-lib';
 import { TxStatusUpdate } from '@reef-chain/react-lib/dist/utils';
 import React, { useCallback, useContext, useEffect, useState } from 'react';
-
+import type {UpdateAction} from "@reef-chain/util-lib/dist/reefState"
 import { SigningOrChildren } from './SigningOrChildren';
 
 const onTxUpdate = (state: TxStatusUpdate) => {
-  let updateActions: appState.UpdateAction[] = [];
+  const {reefState} = useContext(ReefStateContext);
+  let updateActions: UpdateAction[] = [];
 
   if (state.componentTxType === Components.EvmBindComponentTxType.BIND) {
     // bind
@@ -19,33 +20,31 @@ const onTxUpdate = (state: TxStatusUpdate) => {
       state.addresses.forEach((address) => {
         updateActions.push({
           address,
-          type: appState.UpdateDataType.ACCOUNT_EVM_BINDING
-        } as appState.UpdateAction);
+          type: reefState.UpdateDataType.ACCOUNT_EVM_BINDING
+        } as UpdateAction);
         updateActions.push({
           address,
-          type: appState.UpdateDataType.ACCOUNT_NATIVE_BALANCE
-        } as appState.UpdateAction);
+          type: reefState.UpdateDataType.ACCOUNT_NATIVE_BALANCE
+        } as UpdateAction);
       });
     } else {
-      updateActions = [{ type: appState.UpdateDataType.ACCOUNT_EVM_BINDING }, { type: appState.UpdateDataType.ACCOUNT_NATIVE_BALANCE }];
+      updateActions = [{ type: reefState.UpdateDataType.ACCOUNT_EVM_BINDING }, { type: reefState.UpdateDataType.ACCOUNT_NATIVE_BALANCE }];
     }
   } else {
     // transaction
     updateActions = state.addresses && state.addresses.length
       ? state.addresses.map((address) => ({
         address,
-        type: appState.UpdateDataType.ACCOUNT_NATIVE_BALANCE
-      } as appState.UpdateAction))
-      : [{ type: appState.UpdateDataType.ACCOUNT_NATIVE_BALANCE }];
+        type: reefState.UpdateDataType.ACCOUNT_NATIVE_BALANCE
+      } as UpdateAction))
+      : [{ type: reefState.UpdateDataType.ACCOUNT_NATIVE_BALANCE }];
   }
-
-  appState.onTxUpdateResetSigners(state, updateActions);
+  reefState.onTxUpdateResetSigners(state, updateActions);
 };
 
 export const Bind = (): JSX.Element => {
   const { t } = useTranslation();
-  const accounts: ReefSigner[] | undefined | null = hooks.useObservableState(appState.signers$);
-  const selectedSigner: ReefSigner | undefined | null = hooks.useObservableState(appState.selectedSigner$);
+  const {signers,selectedReefSigner} = useContext(ReefStateContext)
   const [bindSigner, setBindSigner] = useState<ReefSigner>();
   const theme = localStorage.getItem('theme');
   const requests = useContext(SigningReqContext);
@@ -63,11 +62,11 @@ export const Bind = (): JSX.Element => {
     let paramAccount;
 
     if (bindAddress) {
-      paramAccount = accounts?.find((acc) => acc.address === bindAddress);
+      paramAccount = signers?.find((acc) => acc.address === bindAddress);
     }
 
-    setBindSigner(paramAccount || selectedSigner || undefined);
-  }, [accounts, selectedSigner]);
+    setBindSigner(paramAccount || selectedReefSigner || undefined);
+  }, [signers, selectedReefSigner]);
 
   const _goHome = useCallback(
     () => onAction('/'),
@@ -96,11 +95,11 @@ export const Bind = (): JSX.Element => {
       }
       {!hasSignRequests && (<div className='section__container--space'></div>)}
       <SigningOrChildren>
-        {bindSigner && accounts && (<div className={theme === 'dark' ? 'theme-dark' : ''}>
+        {bindSigner && signers && (<div className={theme === 'dark' ? 'theme-dark' : ''}>
           <Components.EvmBindComponent
             bindSigner={bindSigner}
             onTxUpdate={onTxUpdate}
-            signers={accounts}
+            signers={signers}
             onComplete={_goHome}
           ></Components.EvmBindComponent></div>)}
       </SigningOrChildren>

@@ -1,13 +1,12 @@
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { faCog, faCoins, faExternalLinkAlt, faPlusCircle, faWallet } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { ActionContext, SigningReqContext } from '@reef-chain/extension-ui/components';
+import { ActionContext, ReefStateContext, SigningReqContext } from '@reef-chain/extension-ui/components';
 import MenuAdd from '@reef-chain/extension-ui/partials/MenuAdd';
-import { appState, availableNetworks, hooks, Network } from '@reef-chain/react-lib';
 import React, { useCallback, useContext, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-
+import { network as nw } from '@reef-chain/util-lib';
 import { Button } from '../uik/Button';
 import useOutsideClick from './../../../extension-ui/src/hooks/useOutsideClick';
 import MenuSettings from './../../../extension-ui/src/partials/MenuSettings';
@@ -19,8 +18,8 @@ interface NavHeaderComp {
 
 function NavHeaderComp (): React.ReactElement<NavHeaderComp> {
   const onAction = useContext(ActionContext);
-  const network: Network | undefined = hooks.useObservableState(appState.currentNetwork$);
-  const mainnetSelected = network == null || network?.rpcUrl === availableNetworks.mainnet.rpcUrl;
+  const {network} =useContext(ReefStateContext)
+  const mainnetSelected = network == null || network?.rpcUrl === nw.AVAILABLE_NETWORKS.mainnet.rpcUrl;
   const openRoute = useCallback(
     (path: string) => onAction(path),
     [onAction]

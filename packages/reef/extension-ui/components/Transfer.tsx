@@ -1,15 +1,13 @@
-import { Provider } from '@reef-chain/evm-provider';
-import { appState, Components, hooks, ReefSigner, TokenWithAmount, utils as reefUtils } from '@reef-chain/react-lib';
-import React, { useEffect, useState } from 'react';
+import {  Components, hooks, TokenWithAmount, utils as reefUtils } from '@reef-chain/react-lib';
+import React, { useEffect, useState,useContext } from 'react';
 
 import { Loading } from '../uik';
 import { SigningOrChildren } from './SigningOrChildren';
+import { ReefStateContext } from '@reef-chain/extension-ui/components';
 
 export const Transfer = (): JSX.Element => {
-  const provider: Provider | undefined = hooks.useObservableState(appState.currentProvider$);
-  const accounts: ReefSigner[] | undefined | null = hooks.useObservableState(appState.signers$);
-  const selectedSigner: ReefSigner | undefined | null = hooks.useObservableState(appState.selectedSigner$);
-  const signerTokenBalances: TokenWithAmount[] | undefined = hooks.useObservableState(appState.tokenPrices$);
+  const {selectedReefSigner,signers,reefState,provider}=  useContext(ReefStateContext);
+  const signerTokenBalances: TokenWithAmount[] | undefined = hooks.useObservableState<TokenWithAmount[]|undefined>(reefState.selectedTokenPrices$, []);
   const theme = localStorage.getItem('theme');
 
   const [token, setToken] = useState<reefUtils.DataWithProgress<TokenWithAmount>>(reefUtils.DataProgress.LOADING);
@@ -26,25 +24,13 @@ export const Transfer = (): JSX.Element => {
 
       const signerTokenBalance = sigTokens ? sigTokens[0] : undefined;
 
-      if (signerTokenBalance /* && reefUtils.isDataSet(signerTokenBalance.balanceValue) */) {
+      if (signerTokenBalance ) {
         const tkn = { ...signerTokenBalance, amount: '', isEmpty: false } as TokenWithAmount;
 
         setToken(tkn);
       }
-
-      /* if (!isDataSet(signerTokenBalance?.balanceValue) && isDataSet(signerTokens)) {
-        const sTkns = getData(signerTokens);
-        const sToken = sTkns ? sTkns[0] : undefined;
-        if (sToken) {
-          const tkn = { ...sToken, amount: '', isEmpty: false } as TokenWithAmount;
-          setToken(tkn);
-        }
-        return;
-      } */
-      // setToken(signerTokenBalance?.balanceValue as reefUtils.DataProgress);
     }
-    // setToken(signerTokenBalances as reefUtils.DataProgress);
-    // }, [signerTokenBalances, signerTokens]);
+
   }, [signerTokenBalances]);
 
   return (
@@ -52,12 +38,12 @@ export const Transfer = (): JSX.Element => {
       {!reefUtils.isDataSet(token) && token === reefUtils.DataProgress.LOADING && <Loading />}
       {!reefUtils.isDataSet(token) && token === reefUtils.DataProgress.NO_DATA &&
       <div>No tokens for transaction.</div>}
-      {provider && reefUtils.isDataSet(token) && signerTokenBalances && reefUtils.isDataSet(signerTokenBalances) && selectedSigner && accounts &&
+      {provider && reefUtils.isDataSet(token) && signerTokenBalances && reefUtils.isDataSet(signerTokenBalances) && selectedReefSigner && signers &&
       <div className={theme === 'dark' ? 'theme-dark' : ''}>
         <Components.TransferComponent
-          accounts={accounts}
-          currentAccount={selectedSigner}
-          from={selectedSigner}
+          accounts={signers}
+          currentAccount={selectedReefSigner}
+          from={selectedReefSigner}
           provider={provider}
           token={token as TokenWithAmount}
           tokens={signerTokenBalances}
