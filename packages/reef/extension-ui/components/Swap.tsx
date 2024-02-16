@@ -33,7 +33,7 @@ export const Swap = (): JSX.Element => {
   // Actions
   const onSwap = hooks.onSwap({
     state,
-    network,
+    network:network as any,
     account: selectedReefSigner || undefined,
     dispatch,
     notify,

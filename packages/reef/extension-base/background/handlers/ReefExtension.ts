@@ -1,4 +1,4 @@
-import { Network } from '@reef-chain/util-lib';
+import { network } from '@reef-chain/util-lib';
 import Extension from '@reef-chain/extension-base/background/handlers/Extension';
 import { createSubscription, unsubscribe } from '@reef-chain/extension-base/background/handlers/subscriptions';
 import { AccountJson, MessageTypes, RequestAccountSelect, RequestNetworkSelect, RequestTypes, ResponseType } from '@reef-chain/extension-base/background/types';

@@ -10,7 +10,7 @@ import React from 'react';
 
 import settings from '@polkadot/ui-settings';
 import { Provider } from '@reef-chain/evm-provider';
-import { Network } from '@reef-chain/util-lib';
+import { Network } from '@reef-chain/util-lib/dist/network';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const noop = (): void => undefined;

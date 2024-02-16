@@ -5,7 +5,6 @@ import type { AccountJson, AccountsContext, AuthorizeRequest, MetadataRequest, S
 import type { SettingsStruct } from '@polkadot/ui-settings/types';
 
 // import { ApolloClient, ApolloProvider } from '@apollo/client';
-import { Network } from '@reef-chain/util-lib';
 import { PHISHING_PAGE_REDIRECT } from '@reef-chain/extension-base/defaults';
 import { canDerive } from '@reef-chain/extension-base/utils';
 import { hooks, ReefSigner } from '@reef-chain/react-lib';
@@ -45,6 +44,7 @@ import RestoreJson from './RestoreJson';
 import Signing from './Signing';
 import Welcome from './Welcome';
 import { Provider } from '@reef-chain/evm-provider';
+import { Network } from '@reef-chain/util-lib/dist/network';
 
 const startSettings = uiSettings.get();
 

@@ -1,4 +1,4 @@
-import { Network } from '@reef-chain/util-lib';
+import { network } from '@reef-chain/util-lib';
 import { Provider } from '@reef-chain/evm-provider';
 import { SendRequest } from '@reef-chain/extension-base/page/types';
 import { ReefInjectedProvider, Unsubcall } from '@reef-chain/extension-inject/types';
