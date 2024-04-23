@@ -15,7 +15,7 @@ fs.readdir(buildDir, function (err, buildFilenames) {
             const fNames = filenames?.filter((f) => f.endsWith('.js'));
 
             if (fNames?.length) {
-              const scripts = fNames.reduce((state, fName) => {
+              const scripts = fNames.sort((a,b)=>parseInt(a)-parseInt(b)).reduce((state, fName) => {
                 return state += "<script src='./extension-js/" + fName + "'></script>";
               }, '');
               const replacedContent = content.toString().replace('<!--__EXTENSION_SRC_PATHS_PLACEHOLDER__-->', scripts);

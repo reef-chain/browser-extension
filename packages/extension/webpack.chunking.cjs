@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 const path = require('path');
+let count = 0;
 
 module.exports = [
   {
@@ -17,7 +18,7 @@ module.exports = [
   {
     chunkFilename: '[name].js',
     filename: (pathData) => {
-      return `/extension-js/${pathData.chunk.id}.js`;
+      return `/extension-js/${count++}.js`;
     },
     globalObject: '(typeof self !== \'undefined\' ? self : this)',
     path: path.join(__dirname, 'build')
