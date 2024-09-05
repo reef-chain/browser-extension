@@ -1,4 +1,4 @@
-<img width="1352" alt="Screenshot 2024-09-05 at 1 30 52 PM" src="https://github.com/user-attachments/assets/6876ecab-e24b-4f8d-8847-462ea5d0465e">[![reef-defi](https://img.shields.io/badge/reef--defi-js-blueviolet)](https://docs.reef.finance/docs/developers/js_libraries/#reefjs)
+[![reef-defi](https://img.shields.io/badge/reef--defi-js-blueviolet)](https://docs.reef.finance/docs/developers/js_libraries/#reefjs)
 ![license](https://img.shields.io/badge/License-Apache%202.0-blue?logo=apache&style=flat-square)
 [![npm](https://img.shields.io/npm/v/@reef-defi/extension-dapp?logo=npm&style=flat-square)](https://www.npmjs.com/package/@reef-defi/extension-dapp)
 
